@@ -49,7 +49,7 @@ app.post("/christmasevents", async (req, res) => {
     
     const response = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: "Suggest christmas events ideas",
+      prompt: "Suggest 4 Christmas events ideas with detailed explanation",
       temperature: 0.7,
       max_tokens: 393,
       top_p: 1,
