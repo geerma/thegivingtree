@@ -1,0 +1,41 @@
+.header_container {
+  width: 100%;
+  z-index: 2;
+  display: flex;
+  flex-direction: row;
+  padding-top: 0rem;
+  padding-bottom: 0rem;
+  padding-left: 1rem;
+  background: #ffffff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(13, 88, 26, 0.75);
+  height: 50px;
+}
+
+.header_logo {
+  margin-right: 1rem;
+  text-align: center;
+}
+
+.header_logo > h2 {
+  margin-top: 12.5px;
+}
+
+.header_links {
+  flex: 1;
+  display: flex;
+  opacity: 0.7;
+}
+
+.header_links > button {
+  font-size: 18px;
+}
+
+.header_links > button:hover {
+  border-bottom: 6px solid rgb(214, 35, 35, 0.8);
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+}

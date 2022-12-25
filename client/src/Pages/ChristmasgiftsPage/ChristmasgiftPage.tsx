@@ -7,6 +7,7 @@ import { loadFull } from "tsparticles";
 import Spline from "@splinetool/react-spline";
 import { Engine, IOptions, RecursivePartial } from "tsparticles-engine";
 import { Gift } from "../../Components/Gift/Gift";
+import Navbar from "../../Components/Navbar/Navbar";
 
 function ChristmasgiftsPage() {
   const [gender, setGender] = useState("");
@@ -123,6 +124,7 @@ function ChristmasgiftsPage() {
 
   return (
     <div className="App">
+      <Navbar />
       <Particles options={options} init={init} />
       <h1>The Giving Tree</h1>
       <div className="gift_input_div">
