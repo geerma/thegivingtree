@@ -34,6 +34,9 @@ The project website was also designed to be cozy, bright, and festive - to fit t
 *Christmas Event ideas for Los Angeles, CA*
 ![8_LoadedEventsLA](./screenshots/8_LoadedEventsLA.png)
 
+General Christmas Events (No Location Provided)
+![6_GeneralEventsLoaded](./screenshots/6_GeneralEventsLoaded.png)
+
 *General Christmas Events (No Location Provided)*
 ![6_GeneralEventsLoaded](./screenshots/6_GeneralEventsLoaded.png)
 
