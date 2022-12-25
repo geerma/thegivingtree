@@ -5,12 +5,12 @@ import { loadFull } from "tsparticles";
 
 import Spline from "@splinetool/react-spline";
 import { Engine, IOptions, RecursivePartial } from "tsparticles-engine";
-import { Gift } from "../../Components/Gift/Gift";
 import Navbar from "../../Components/Navbar/Navbar";
 
 function ChristmaseventsPage() {
   const [location, setLocation] = useState("");
   const [christmasEventsArray, setChristmasEventsArray] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   // TSParticles Options for Snow
   // References: https://www.youtube.com/watch?v=m0zkNlFBzA4
@@ -64,12 +64,14 @@ function ChristmaseventsPage() {
       .then((data) => {
         console.log(data);
         setChristmasEventsArray(data.eventtext.split("\n\n"));
+        setIsLoading(false);
       });
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Fetch Christmas Events");
+    setIsLoading(true);
     fetchData();
   };
 
@@ -85,7 +87,7 @@ function ChristmaseventsPage() {
         </h4>
         <form className="event_input_box" onSubmit={handleSubmit}>
           <label>
-            Location (Option):
+            Location (optional):
             <br />
             <input
               type="text"
@@ -95,6 +97,7 @@ function ChristmaseventsPage() {
           </label>
           <input id="submit" type="submit" value="Submit" />
         </form>
+        {isLoading == true ? <p>Loading... please wait</p> : null}
       </div>
       <Spline
         className="spline"

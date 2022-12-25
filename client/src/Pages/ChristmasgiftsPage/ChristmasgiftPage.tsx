@@ -9,6 +9,10 @@ import { Engine, IOptions, RecursivePartial } from "tsparticles-engine";
 import { Gift } from "../../Components/Gift/Gift";
 import Navbar from "../../Components/Navbar/Navbar";
 
+/**
+ * Page which suggests Christmas Gifts
+ * @returns div for christmas gifts
+ */
 function ChristmasgiftsPage() {
   const [gender, setGender] = useState("");
   const [profession, setProfession] = useState("");
@@ -32,7 +36,7 @@ function ChristmasgiftsPage() {
         value: "#FFF",
       },
       number: {
-        value: 18,
+        value: 40,
       },
       opacity: {
         value: { min: 0.2, max: 0.8 },
@@ -54,10 +58,15 @@ function ChristmasgiftsPage() {
 
   const backend_URL = import.meta.env.VITE_BACKEND_URL;
 
+  /**
+   * Fetches gift suggestions from the backend server
+   * @returns 
+   */
   const fetchGifts = () => {
-    setIsLoading(true);
-    setSpecificGiftText("")
+    setIsLoading(true); // Set Loading to True
+    setSpecificGiftText("") // Clears Specific Gift Text
 
+    // Prevent multiple loadings
     if (isLoading == true) {
       window.alert(
         "Please wait patiently. Refresh the page if there was an error."
@@ -81,10 +90,14 @@ function ChristmasgiftsPage() {
       .then((data) => {
         console.log(data.giftstext);
         setIsLoading(false);
-        setChristmasGiftsArray(data.giftstext.split("\n\n"));
+        setChristmasGiftsArray(data.giftstext.split("\n\n")); // Splits into Array, which is mapped
       });
   };
 
+  /**
+   * Function is called when submit button is clicked to obtain all gift suggestions
+   * @param e 
+   */
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Fetch Christmas Gifts");
@@ -92,15 +105,23 @@ function ChristmasgiftsPage() {
     fetchGifts();
   };
 
+  /**
+   * OnClick function that is called when submit button is clicked after giftId is entered
+   * Gets more information about one specific gift
+   * @returns 
+   */
   const requestMore = () => {
     if (giftId == 0) {
       window.alert("Please enter a gift number");
       return;
     }
     console.log("Fetching More Information for", giftId);
-    fetchSpecificGift();
+    fetchSpecificGift(); // Calls fetch API
   };
 
+  /**
+   * Fetches more information for a specific gift
+   */
   const fetchSpecificGift = () => {
     setIsLoadingSpecific(true);
 
@@ -148,7 +169,7 @@ function ChristmasgiftsPage() {
             />
           </label>
           <label>
-            Profession:
+            Profession (ex. computer science student, nurse):
             <br />
             <input
               type="text"
@@ -157,7 +178,7 @@ function ChristmasgiftsPage() {
             />
           </label>
           <label>
-            Hobbies:
+            Hobbies (ex. working out, games, music, cooking):
             <br />
             <input
               type="text"
@@ -169,7 +190,6 @@ function ChristmasgiftsPage() {
         </form>
         {isLoading == true ? <p>Loading... please wait patiently</p> : null}
       </div>
-
       <Spline
         className="spline"
         scene="https://prod.spline.design/qMW1BAm3aOgvI0fY/scene.splinecode"
