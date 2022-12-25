@@ -2,20 +2,34 @@
 
 This project utilize ChatGPT-3 AI technology from OpenAI to suggest gift suggestions and event ideas for various events (currently only Christmas). It was built using React.js, TypeScript, node.js, and Express.js. The frontend was deployed to Vercel, and the server was deployed to GCP via Container Registry and Cloud Run.
 
+![1_thumbnail](./screenshots/1_thumbnail.png)
+
 # How to Run
 
 Visit the deployed website [here](https://thegivingtree.vercel.app/)
 
 # Screenshots
 
-![1_thumbnail](./screenshots/1_thumbnail.png)
+After inputting the recipient information, the website is fetching data from the server
 ![2_LoadingGifts](./screenshots/2_LoadingGifts.png)
+
+Gift suggestions have been received! Click on the Gift Boxes to open them
 ![3_Giftboxes](./screenshots/3_Giftboxes.png)
+
+After looking through all the gift ideas, you can enquire for further information about a specific gift number
 ![4_SpecificGiftLoading](./screenshots/4_SpecificGiftLoading.png)
+
+Received more information about specific gift
 ![5_SpecificGift](./screenshots/5_SpecificGift.png)
-![6_GeneralEventsLoaded](./screenshots/6_GeneralEventsLoaded.png)
+
+Christmas Events ideas for Vancouver, BC
 ![7_LoadedEventsVancouver](./screenshots/7_LoadedEventsVancouver.png)
+
+Christmas Event ideas for Los Angeles, CA
 ![8_LoadedEventsLA](./screenshots/8_LoadedEventsLA.png)
+
+General Christmas Events (No Location Provided)
+![6_GeneralEventsLoaded](./screenshots/6_GeneralEventsLoaded.png)
 
 ## Inspiration
 One of the challenges people face during the holiday season is picking out gifts for someone else - whether it be for a Secret Santa party, or for a close friend/relative, I think almost everyone has stressed over what to buy for someone.
