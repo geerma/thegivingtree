@@ -1,0 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Noto+Sans&family=Roboto:wght@500&display=swap');
+
+:root {
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 375;
+}

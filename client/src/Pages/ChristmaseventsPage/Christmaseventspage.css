@@ -1,0 +1,118 @@
+/* Entire page */
+.App {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 160vh;
+  text-align: center;
+  opacity: 0.99;
+  color: rgb(241, 228, 228);
+
+  background-color: #CB656F;
+}
+
+.App > h1 {
+  color: white;
+  margin-top: 4rem;
+}
+
+/* Div for Input Box */
+.event_input_box {
+  border: 4px solid #294d0b;
+  background-color: #36680e;
+  width: 35vw;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0.5rem;
+}
+
+/* Form */
+.event_input_box {
+  width: 30vw;
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Label and Inputs */
+.event_input_box > label {
+  margin: 0.5rem;
+}
+
+.event_input_box > label > input {
+  width: 14vw;
+}
+
+/* Submit button */
+.event_input_box > #submit {
+  width: 10vw;
+  margin: auto;
+  margin-bottom: 1rem;
+}
+
+.event_wrapper {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-auto-rows: 150px;
+}
+
+.spline {
+  position: absolute;
+  top: -100px;
+  right: 0;
+  bottom: 0;
+  left: -250px;
+  width: 400px;
+  height: 400px;
+  z-index: -1;
+  opacity: 0.9;
+}
+
+.individual_event {
+  width: 90vw;
+  margin-top: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+
+@media screen and (max-width: 860px) {
+  .individual_event {
+    font-size: 15px;
+    font-weight: 300;
+  }
+}
+
+
+
+/* .logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+} */

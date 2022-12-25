@@ -1,0 +1,52 @@
+.individual_gift {
+  /* border: 1px solid white; */
+  min-width: 400px;
+  min-height: 200px;
+  margin: 1rem;
+}
+
+.individual_gift:nth-child(4) {
+    background-color: #CB656F;
+}
+
+.individual_gift:nth-child(5) {
+    background-color: #CB656F;
+}
+
+.individual_gift > img {
+  z-index: 1;
+}
+
+.individual_gift > img:hover {
+  animation: shake 0.8s;
+  animation-iteration-count: 3;
+}
+
+.individual_gift > p {
+    font-size: 17px;
+    font-weight: 500;
+}
+
+@keyframes shake {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-10deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+  75% {
+    transform: rotate(-10deg);
+  }
+  100% {
+    transform: rotate(10deg);
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .individual_gift {
+    margin: 0.5rem;
+  }
+}
