@@ -21,7 +21,9 @@ export const Gift = ({ item }: GiftProps) => {
       {open == false ? (
         <img src={giftBox} width={200} height={200} onClick={() => openBox()} />
       ) : (
-        <p>{item}</p>
+        <div>
+          <p >{item}</p>
+        </div>
       )}
     </div>
   );

@@ -31,12 +31,12 @@ app.post("/christmasgifts", async (req, res) => {
     const hobbies = req.body.hobbies
 
     const response = await openai.createCompletion({
-      model: "text-curie-001",
+      model: "text-davinci-003",
       prompt: `5 detailed Christmas gift ideas for a ${gender} who is a ${profession} and has the following hobbies: ${hobbies}. Emphasis on Christmas. Give a detailed explanation for each gift`,
       temperature: 0.7,
-      max_tokens: 300,
+      max_tokens: 400,
       top_p: 1,
-      frequency_penalty: 0.04,
+      frequency_penalty: 0.3,
       presence_penalty: 0.02,
     });
 
@@ -47,6 +47,32 @@ app.post("/christmasgifts", async (req, res) => {
     res.status(500).send({error});
   }
 });
+
+app.post("/christmasgiftsspecific", async (req, res) => {
+  try {
+
+    const giftId = req.body.giftId
+
+    console.log(giftId)
+
+    const response = await openai.createCompletion({
+      model: "text-davinci-003",
+      prompt: `Go into more detail about Gift Number ${giftId}`,
+      temperature: 0.7,
+      max_tokens: 300,
+      top_p: 1,
+      frequency_penalty: 0.2,
+      presence_penalty: 0.02,
+    });
+
+    res.status(200).send({
+        specificgifttext: response.data.choices[0].text
+    })
+  } catch (error) {
+    res.status(500).send({error});
+  }
+});
+
 
 app.post("/christmasevents", async (req, res) => {
   try {

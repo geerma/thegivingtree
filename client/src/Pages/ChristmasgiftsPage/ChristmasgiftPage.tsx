@@ -3,6 +3,7 @@ import { useCallback, useState } from "react";
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 
+// References: https://www.npmjs.com/package/@splinetool/react-spline
 import Spline from "@splinetool/react-spline";
 import { Engine, IOptions, RecursivePartial } from "tsparticles-engine";
 import { Gift } from "../../Components/Gift/Gift";
@@ -12,6 +13,10 @@ function ChristmasgiftsPage() {
   const [profession, setProfession] = useState("");
   const [hobbies, setHobbies] = useState("");
   const [christmasGiftsArray, setChristmasGiftsArray] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [giftId, setGiftId] = useState(0);
+  const [isLoadingSpecific, setIsLoadingSpecific] = useState(false);
+  const [specificGiftText, setSpecificGiftText] = useState("");
 
   // TSParticles Options for Snow
   // References: https://www.youtube.com/watch?v=m0zkNlFBzA4
@@ -48,8 +53,16 @@ function ChristmasgiftsPage() {
 
   const backend_URL = "http://localhost:8080";
 
-  const fetchData = () => {
-    console.log(gender, profession, hobbies);
+  const fetchGifts = () => {
+    setIsLoading(true);
+    setSpecificGiftText("")
+
+    if (isLoading == true) {
+      window.alert(
+        "Please wait patiently. Refresh the page if there was an error."
+      );
+      return;
+    }
 
     const giftPostOptions = {
       method: "POST",
@@ -66,6 +79,7 @@ function ChristmasgiftsPage() {
       .catch((error) => console.log(error))
       .then((data) => {
         console.log(data.giftstext);
+        setIsLoading(false);
         setChristmasGiftsArray(data.giftstext.split("\n\n"));
       });
   };
@@ -73,7 +87,38 @@ function ChristmasgiftsPage() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Fetch Christmas Gifts");
-    fetchData();
+    setIsLoading(true);
+    fetchGifts();
+  };
+
+  const requestMore = () => {
+    if (giftId == 0) {
+      window.alert("Please enter a gift number");
+      return;
+    }
+    console.log("Fetching More Information for", giftId);
+    fetchSpecificGift();
+  };
+
+  const fetchSpecificGift = () => {
+    setIsLoadingSpecific(true);
+
+    const specificGiftPostOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        giftId: giftId,
+      }),
+    };
+
+    fetch(`${backend_URL}/christmasgiftsspecific`, specificGiftPostOptions)
+      .then((res) => res.json())
+      .catch((error) => console.log(error))
+      .then((data) => {
+        console.log(data.specificgifttext);
+        setSpecificGiftText(data.specificgifttext);
+        setIsLoadingSpecific(false);
+      });
   };
 
   return (
@@ -81,10 +126,14 @@ function ChristmasgiftsPage() {
       <Particles options={options} init={init} />
       <h1>The Giving Tree</h1>
       <div className="gift_input_div">
-        <h4>Welcome to The Giving Tree! You are on the Christmas Gifts page!</h4>
+        <h4>
+          Welcome to The Giving Tree! You are on the Christmas Gifts page!
+        </h4>
         <h4>Having trouble finding the perfect Christmas gift?</h4>
-        <h4>Enter the Gender, Profession, and Hobbies of the recipient as best you can, then hit submit. 
-          Feel free to enter vague/neutral entries, but the best results are when they are specific!
+        <h4>
+          Enter the Gender, Profession, and Hobbies of the recipient as best you
+          can, then hit submit. Feel free to enter vague/neutral entries, but
+          the best results are when they are specific!
         </h4>
         <form className="gift_input_box" onSubmit={handleSubmit}>
           <label>
@@ -116,16 +165,32 @@ function ChristmasgiftsPage() {
           </label>
           <input id="submit" type="submit" value="Submit" />
         </form>
+        {isLoading == true ? <p>Loading... please wait patiently</p> : null}
       </div>
+
       <Spline
         className="spline"
         scene="https://prod.spline.design/qMW1BAm3aOgvI0fY/scene.splinecode"
       />
-      {christmasGiftsArray != undefined ? (
-        <div className="gift_wrapper">
-          {christmasGiftsArray.slice(1, 6).map((item: string, index) => (
-            <Gift item={item} key={index} />
-          ))}
+      {christmasGiftsArray.length != 0 ? (
+        <div>
+          <div className="gift_wrapper">
+            {christmasGiftsArray.slice(1, 6).map((item: string, index) => (
+              <Gift item={item} key={index} />
+            ))}
+          </div>
+          <div className="request_more">
+            <label>
+              Request more info about Gift #:
+              <input
+                type="number"
+                onChange={(e) => setGiftId(Number(e.target.value))}
+              />
+            </label>
+            <button onClick={() => requestMore()}>Submit</button>
+          </div>
+          {isLoadingSpecific == true ? <p>Loading specific gift information...</p> : null}
+          <p className="specific_text">{specificGiftText}</p>
         </div>
       ) : null}
     </div>

@@ -9,7 +9,7 @@
   height: 160vh;
   text-align: center;
   opacity: 0.99;
-  color: rgb(241, 228, 228);
+  color: rgb(236, 227, 227);
 
   background-color: #CB656F;
 }
@@ -70,6 +70,12 @@
   height: 400px;
   z-index: -1;
   opacity: 0.9;
+}
+
+.specific_text {
+  width: 95vh;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @media screen and (max-width: 860px) {
