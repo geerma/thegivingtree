@@ -37,9 +37,6 @@ The project website was also designed to be cozy, bright, and festive - to fit t
 General Christmas Events (No Location Provided)
 ![6_GeneralEventsLoaded](./screenshots/6_GeneralEventsLoaded.png)
 
-*General Christmas Events (No Location Provided)*
-![6_GeneralEventsLoaded](./screenshots/6_GeneralEventsLoaded.png)
-
 # How we built it
 
 The front end was built using React.js, TypeScript, HTML, and CSS. 
