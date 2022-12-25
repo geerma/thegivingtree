@@ -51,7 +51,7 @@ function ChristmasgiftsPage() {
     },
   };
 
-  const backend_URL = "http://localhost:8080";
+  const backend_URL = import.meta.env.VITE_BACKEND_URL;
 
   const fetchGifts = () => {
     setIsLoading(true);
@@ -107,7 +107,7 @@ function ChristmasgiftsPage() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        giftId: giftId,
+        giftText: christmasGiftsArray[giftId],
       }),
     };
 

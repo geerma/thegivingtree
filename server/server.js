@@ -19,6 +19,7 @@ app.get("/", async (req, res) => {
   res.status(200).send({
     "GET - /": "Root Directory",
     "POST - /christmasgifts": "Christmas Gifts",
+    "POST - /christmasgiftsspecific": "Christmas Specific Gifts",
     "POST - /christmasevents": "Christmas Activities",
   });
 });
@@ -51,17 +52,17 @@ app.post("/christmasgifts", async (req, res) => {
 app.post("/christmasgiftsspecific", async (req, res) => {
   try {
 
-    const giftId = req.body.giftId
+    const giftText = req.body.giftText
 
-    console.log(giftId)
+    console.log(giftText)
 
     const response = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: `Go into more detail about Gift Number ${giftId}`,
+      prompt: `Can you go into more detail about this gift idea: ${giftText}"`,
       temperature: 0.7,
       max_tokens: 300,
       top_p: 1,
-      frequency_penalty: 0.2,
+      frequency_penalty: 0.02,
       presence_penalty: 0.02,
     });
 

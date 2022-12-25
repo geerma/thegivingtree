@@ -44,7 +44,7 @@ function ChristmaseventsPage() {
     },
   };
 
-  const backend_URL = "http://localhost:8080";
+  const backend_URL = import.meta.env.VITE_BACKEND_URL;
 
   const fetchData = () => {
     console.log(location);
